@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" href="./resource/theme-simple-dark.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        name: "HuaiNian",
+        loadSidebar: true,
+        autoHeader: true,
+        subMaxLevel: 10,
+        auto2top: true,
+        formatUpdated: "{YYYY}/{MM}/{DD} {HH}:{mm}:{ss}",
+        search: {
+          maxAge: 1000 * 60 * 5,
+          paths: 'auto',
+          depth: 6,
+          noData: "找不到结果",
+        },
+        pagination: {
+          previousText: "上一个主题",
+          nextText: "下一个主题",
+          crossChapter: true,
+          crossChapterText: true,
+        },
+        plugins: [
+          function (hook) {
+            hook.beforeEach(function (html) {
+              return "上次更新: {docsify-updated} " + "\n" + html;
+            });
+          },
+          function (hook) {
+            var footer = ["<hr/>", "<footer>", '<span> published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>', "</footer>"].join("");
+            hook.afterEach(function (html) {
+              return html + footer;
+            });
+          },
+        ],
+      };
+    </script>
+    <!-- Docsify v4 -->
+    <script src="./resource/main.js"></script>
+    <!-- search plugin -->
+    <script src="./resource/search.js"></script>
+    <!-- zoom-image plugin -->
+    <script src="./resource/zoom-image.js"></script>
+    <!-- pagination plugin -->
+    <script src="./resource/pagination.js"></script>
+  </body>
+</html>
