@@ -11,7 +11,7 @@
 
   //判断文件的条件
   const judgeFile = {
-    isMdDoc: (file) => file.endsWith(".md") && !["README.md", "_sideBar.md"].includes(file),
+    isMdDoc: (file) => file.endsWith(".md") && !["README.md", "_sidebar.md"].includes(file),
     isFolder: (file) => !file.includes(".") && !["Images", "images"].includes(file),
   };
   //获取目标文件
@@ -35,7 +35,7 @@
     const folders = await getTargetFiles(path, judgeFile.isFolder);
     const foldersCatalog = folders
       .map((folder) => {
-        //对于每一个子文件夹 都需要为其生成描述文件_sideBar.md和README.md
+        //对于每一个子文件夹 都需要为其生成描述文件_sidebar.md和README.md
         const nextPath = path + folder + "/";
         genDescDoc(nextPath, nextPath);
         return `+ [${folder}📁](${path.replace(__dirname, "") + folder + "/"})`;
@@ -44,10 +44,10 @@
     return mdCatalog + "\r\n" + foldersCatalog;
   };
 
-  //在一个文件夹写入描述文件：_sideBar.md和README.md
+  //在一个文件夹写入描述文件：_sidebar.md和README.md
   const genDescDoc = async (genPath, docPath) => {
     const catalog = await genSingleFolderCatalog(docPath);
-    fs.writeFile(genPath + "_sideBar.md", catalog, () => {});
+    fs.writeFile(genPath + "_sidebar.md", catalog, () => {});
     const hasREADME = (await getTargetFiles(genPath)).includes("README.md");
     // if (hasREADME) {
     let newPath = genPath.endsWith("/") ? genPath.slice(0, genPath.length - 1) : genPath;
