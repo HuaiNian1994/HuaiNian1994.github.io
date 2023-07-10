@@ -1,0 +1,1 @@
+<p>当前位置：首页->AIGC->绘画->stable diffusion->extensions</p><p>版本：init Version</p>
